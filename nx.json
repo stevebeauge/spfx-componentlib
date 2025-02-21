@@ -1,0 +1,63 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "extends": "nx/presets/npm.json",
+  "namedInputs": {
+    "default": [
+      "{workspaceRoot}/.eslintrc.json",
+      "{workspaceRoot}/.npmrc",
+      "{workspaceRoot}/package.json",
+      "{workspaceRoot}/scripts/**/*",
+      "{workspaceRoot}/tsconfig.json",
+      "{projectRoot}/**/*",
+      "!{workspaceRoot}/.vscode/*",
+      "!{projectRoot}/.vscode/*",
+      "!{projectRoot}/**/*.md",
+      "!{projectRoot}/dist/**/*",
+      "!{projectRoot}/temp/**/*",
+      "!{projectRoot}/sharepoint",
+      {
+        "env": "NODE_ENV"
+      }
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": true
+    },
+    "build-incremental": {
+      "dependsOn": [],
+      "outputs": ["{projectRoot}/dist"],
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/coverage"],
+      "cache": true
+    },
+    "release": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/dist", "{projectRoot}/sharepoint"],
+      "cache": true
+    },
+    "serve": {
+      "dependsOn": ["^build"]
+    },
+    "storybook": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "dependsOn": ["^build"]
+    },
+    "start": {
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "cache": true
+    }
+  },
+  "parallel": 4,
+  "cacheDirectory": ".nx/cache",
+  "defaultBase": "develop"
+}
