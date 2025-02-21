@@ -1,5 +1,7 @@
+import styles from "./ShinnyButton.module.css";
+
 const ShinnyButton = () => {
-  return <button>Shinny Button</button>;
+  return <button className={styles.shinnyButton}>Shinny Button</button>;
 };
 
 export { ShinnyButton };
