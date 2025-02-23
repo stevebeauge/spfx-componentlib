@@ -13,6 +13,31 @@ build.rig.getTasks = function () {
   return result;
 };
 
+build.configureWebpack.mergeConfig({
+  additionalConfiguration: (generatedConfiguration) => {
+    // Ensure SPFx Webpack processes CSS modules from the shared package
+    // generatedConfiguration.module.rules.push({
+    //   test: /\.module\.css$/,
+    //   use: [
+    //     {
+    //       loader: "@microsoft/loader-load-themed-styles",
+    //       options: { esModule: true },
+    //     },
+    //   ],
+    // });
+
+    // // Ensure SPFx processes .module.css from shared package
+    // generatedConfiguration.module.rules.forEach((rule) => {
+    //   if (rule.test && rule.test.toString().includes(".module.scss")) {
+    //     rule.test = /\.(module|mod)\.(s?css)$/; // Support .module.css as well
+    //   }
+    // });
+
+    return generatedConfiguration;
+  },
+});
+
+
 /* fast-serve */
 const { addFastServe } = require("spfx-fast-serve-helpers");
 addFastServe(build);
