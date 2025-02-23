@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
+import dts from "vite-plugin-dts";
 import { externalizeDeps } from "vite-plugin-externalize-deps";
-
+import { libInjectCss } from "vite-plugin-lib-inject-css";
 export default defineConfig({
   build: {
     lib: {
@@ -8,9 +9,10 @@ export default defineConfig({
       formats: ["es"],
       fileName: "index",
     },
+    sourcemap: true,
     rollupOptions: {},
   },
-  plugins: [externalizeDeps()],
+  plugins: [externalizeDeps(), dts(), libInjectCss()],
   css: {
     transformer: "lightningcss",
   },

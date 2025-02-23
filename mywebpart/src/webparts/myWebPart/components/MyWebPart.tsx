@@ -1,7 +1,6 @@
 import { ShinnyButton } from "@repo/shared";
 import styles from "./MyWebPart.module.scss";
 
-require("../../../../node_modules/@repo/shared/dist/components/ShinnyButton.module.css");
 
 const MyWebPart: React.FC = () => {
   return (
