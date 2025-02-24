@@ -16,9 +16,7 @@
     }
   },
   "scripts": {
-    "prebuild": "tcm src",
-    "build": "tsc -b",
-    "postbuild": "cpx \"src/**/*.css\" dist",
+    "build": "vite build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rimraf dist"
   },

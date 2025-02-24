@@ -11,7 +11,7 @@ function cssTypesPlugin(): PluginOption {
     name: "vite-plugin-css-types",
     enforce: "pre", // Exécuter après le traitement des CSS
     async transform(code, id) {
-      if (id.endsWith(".css")) {
+      if (id.endsWith(".css") || id.endsWith(".scss")) {
         const { exports } = transform({
           code: Buffer.from(code),
           filename: id,
@@ -55,9 +55,11 @@ export default defineConfig({
     },
     sourcemap: true,
     rollupOptions: {},
+    minify: false,
   },
   plugins: [externalizeDeps(), dts(), libInjectCss(), cssTypesPlugin()],
   css: {
     transformer: "postcss",
+    lightningcss: {},
   },
 });
